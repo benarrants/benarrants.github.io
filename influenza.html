@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Resource Reallocation Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style/style_proto.css" />
+        <script type="text/javascript" src="style/js_style.js"></script>
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo" style="padding-top: .4em;"><strong>Benjamin Arrants</strong></a>
+									<nav id="menu" style="text-align:center;">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="aboutme.html">About Me</a></li>
+                                            <li>
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="drop">Projects &#9660</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <a href="gameco.html">Budget Reallocation</a>
+                                                        <a href="influenza.html">Resource Reallocation</a>
+                                                        <a href="rockbuster.html">Online launch Strategy</a>
+                                                        <a href="instacart.html">Marketing Strategy</a>
+                                                        <a href="imdb.html">Profit Optimization</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+										</ul>
+									</nav>
+								</header>
+
+							<!-- Content -->
+								<section style="padding-top: 2.5em;">
+									<header class="main">
+										<h1>Staffing for Influenza Season</h1>
+									</header>
+
+									<h2>Context</h2>
+									<p>A medical staffing agency provides temporary workers to clinics and hospitals on an as-needed basis. During flu season, vulnerable populations (individuals age 65+) are particular susceptible.</p>
+									
+									<h2>Objective</h2>
+									<p>Present insights to stakeholders to determine when to send staff, and how many to each state for the flu season of 2018.</p>
+									
+									<h2>Deliverable(s)</h2>
+									<p>Create a Tableau Storyboard to tell the compelling tale of the data.</p>
+									
+									<h2>Tools Used</h2>
+									<p>Microsoft Excel, and Tableau Public for Visualizations.</p>
+												
+									<h2>The Data</h2>
+									<ul>
+										<li>Influenza deaths by geography, time, age, and gender, 2009-2017. Source: CDC
+										<a href="https://https://coach-courses-us.s3.amazonaws.com/public/courses/da_program/CDC_Influenza_Deaths_edited.xlsx">Data Set</a></li>
+								
+										<li>Population data by geography 2009-2017. Source: US Census Bureau
+										<a href="https://coach-courses-us.s3.amazonaws.com/public/courses/data-immersion/A1-A2_Influenza_Project/Census_Population_transformed_202101.csv">Data Set</a></li>									
+									</ul>
+									<ul class="actions" style="margin-bottom: 0;">
+										<li><a href="https://public.tableau.com/views/Project2_10_16914512814580/Story" class="button primary">Tableau Storyboard</a></li>
+									</ul>
+									
+									<hr class="major" />
+									
+									<h2>Initial Analysis Steps</h2>
+									<ol>
+										<li>Create data profiles, detailing bias and source quality or integrity.</li>								
+										<li>Data Integration and Transformation - Merged the two datasets on a primary key within Excel.</li>									
+										<li>Calculate descriptive statistics of variables, including standard deviation and variance.</li>									
+										<li>Formulate a Hypothesis test to compare if there is a significant difference among variables.</li>																		
+										<li>Test for correlation between variables- Tested the correlation between death count and population over 65+.</li>
+									</ol>
+									
+									<hr class="major" />
+		
+									<h2>Step 6 - Insights and Data Visualization</h2>
+									<p>This map shows where high death count is concentrated and which states are affected by a high percentage of death. Still, this isn't the full story.</p>
+									<span class="image fit"><img src="project images/flu_map.png"/></span>
+
+									<p>In the chart below, states are sorted by population categorized by High, Medium, and Low Need. 810,000 is the mean age of the 65+ population. All states below that are labeled as Low-Need. 1,700,000 is one standard deviation above the mean and everything below that and to the mean is Medium-Need. Everything above the deviation is High-Need. In addition to population, the state's influenza deaths are also shown. This chart can clearly show the effect of death count vs death rate. New York is a perfect example.</p>
+									<span class="image fit" style="max-width: 1300px;"><img src="project images/flu_need.png"/></span>
+									
+									<hr class="major" />
+								
+									<h2>Recommendations</h2>
+									<ul> 
+										<li>California, New York, Florida, Pennsylvania, Texas, Illinois, and Ohio have the most need</li>
+										<li>According to previous CDC data, Influenza season varies but usually starts around week 40, increasing in severity until reaching a peak and decreasing back to around week 20.</li>
+										<li>The data for staffing numbers is unavailable currently, but following projected forecasting, California and Pennsylvania will each have about 5% fewer deaths due to Influenza in 2018. Because of this, 9% of those staffing resources can move to Texas, New York, and Ohio where they have, collectively, a 9% increase in deaths forecasted.</li>
+										<li>How many staff members to send can be better answered when the data is available.</li>
+										<li>To monitor the effectiveness of the staffing plan, there should be an active measure of the death rate and death count for each state.</li>
+										<li>If a state has an abnormally high metric, then it likely needs for staff.</li>
+									</ul>
+									
+									<hr class="major" />
+
+								</section>
+
+					</div>
+			</div>
+	</body>
+</html>

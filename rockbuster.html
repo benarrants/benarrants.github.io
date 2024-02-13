@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Online Launch Strategy Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style/style_proto.css" />
+        <script type="text/javascript" src="style/js_style.js"></script>
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo" style="padding-top: .4em;"><strong>Benjamin Arrants</strong></a>
+									<nav id="menu" style="text-align:center;">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="aboutme.html">About Me</a></li>
+                                            <li>
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="drop">Projects &#9660</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <a href="gameco.html">Budget Reallocation</a>
+                                                        <a href="influenza.html">Resource Reallocation</a>
+                                                        <a href="rockbuster.html">Online launch Strategy</a>
+                                                        <a href="instacart.html">Marketing Strategy</a>
+                                                        <a href="imdb.html">Profit Optimization</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+										</ul>
+									</nav>
+								</header>
+
+							<!-- Content -->
+								<section style="padding-top: 2.5em;">
+									<header class="main">
+										<h1>Rockbuster Movie Rental</h1>
+									</header>
+
+									<h2>Context</h2>
+									<p>Rockbuster Stealth LLC is a movie rental company that used to have stores around the world. The management team is planning to use its existing movie licenses to launch an online video rental service in order to stay competitive.</p>
+									
+									<h2>Objective</h2>
+									<p>Analyze how the market has affected revenue within the customer base using SQL. Use the insights found to answer the below questions and suggest a strategy for the online launch.</p>
+										<ol>
+											<li>What was the average rental duration for all videos?</li>
+											<li>Which countries are Rockbuster customers based in?</li>
+											<li>Where are customers with a high lifetime value based?</li>
+											<li>Do sales figures vary between geographic regions?</li>
+											<li>Which movies contributed the most/least to revenue gain?</li>
+										</ol>
+									
+									<h2>Deliverable(s)</h2>
+										<ul>
+											<li>Data Dictionary</li>
+											<li>Query Results/Guide (Excel)</li>
+											<li>Presentation of Insights</li>
+										</ul>	
+
+									<h2>Tools Used</h2>
+									<p>PostgreSQL, Microsoft Excel and Powerpoint, and Tableau Public (visuals).</p>
+									
+									<h2>The Data</h2>
+									<p>Data sets were opened using Postgre SQL. There was 15 tables worth of data containing information about customers, payments, rentals, inventory, and locations, etc. (identifying info is fabricated)
+									<a href="http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip">Data</a></p>
+								
+										<ul class="actions" style="margin-bottom: 0;">
+											<li><a href="https://github.com/benarrants/rockbuster-analysis" class="button primary">Complete Project on Github</a></li>
+										</ul>		
+									 	
+										<ul class="actions" style="margin-bottom: 0;">
+											<li><a href="https://public.tableau.com/app/profile/benjamin.arrants/viz/VisualsforRockbuster3_10/Sheet1" class="button primary">Visualizations on Tableau</a></li>
+										</ul>
+										
+									<hr class="major" />
+									
+									<h2>Step 1 - Data Exploration and Querying</h2>
+									<p>
+										<ol>
+											<li>The data was checked for cleanliness and consistency.</li>
+												<ul>
+													<li>There was no missing data, or duplicates. Formatting issues were addressed.</li>
+													<li>Passed consistency checks</li>
+												</ul>
+											<li>Calculated summary statistics which gave the answer to one of the key questions.</li>
+												<ul>
+													<li>Average rental time for all videos was 5 days.</li>
+												</ul>
+											<li>Through experimenting with joins, subqueries, and common table expressions, another question was addressed.</li>
+										</ol>
+									</p>
+									
+									<h3>Example Query - Answered the key question: which countries are Rockbuster customers based in?</h3>
+											SELECT country,<br />
+                                                <span style="margin-left:15px;">COUNT(DISTINCT A.customer_id) AS customer_count,</span> <br />
+												<span style="margin-left:15px;">SUM(amount) AS total_payment</span><br />
+											FROM customer A<br />
+											INNER JOIN address B ON A.address_id = B.address_id<br />
+											INNER JOIN city C ON B.city_id = C.city_id<br />
+											INNER JOIN country D ON C.country_ID = D.country_ID<br />
+											INNER JOIN payment E ON a.customer_id = E.customer_id<br />
+											GROUP BY country<br />
+											ORDER BY total_payment DESC;<br /><br />
+
+									
+									<p>Seen visually below.</p>
+									<span class="image fit" style="max-width: 1280px;"><img src="project images/rb_map.png"/></span>
+									
+									<hr class="major" />
+									
+									<h2>Step 2 - Data Analysis and Visualization</h2>
+									
+									<p>There was a challenge during analysis when addressing the next key question: where are customers with a high lifetime value based?</p>
+									<p>Finding the top customers and their location is relatively simple. However, it doesn't tell us the full story, or something as useful as which countries have customers with high total value. For that, we need a new variable entirely.</p>
+									<p>The solution was creating a calculated variable that divides payment amount by the customer count, creating a country's relative purchasing power. Puchasing Power is how much payment was made per customer.</p>
+									
+									<span class="image fit" style="max-width: 1300px;"><img src="project images/rb_pur_pow.png"/></span>
+									
+									<h3>Puchasing Power</h3>
+										<ul>
+											<li>A higher number means that country made more revenue per capita than another country.</li>
+											<li>Purchasing Power highlights countries that should receive the most focus.</li>
+											<ul>
+												<li>The Philippines is the country in the Top 10 with the highest Purchasing Power. If customer count increases, then the profit margin could be larger than other countries because of this.</li>
+											</ul>
+											<li>While Taiwan is not in the top ten in customer count, it has the highest Purchasing Power of countries with at least 10 customers.</li>
+										</ul>
+										<span class="image fit"><img style="max-width:350px;" src="project images/rb_taiwan.png"/></span>
+																		
+									<p>Further analysis shows Asia is the top market for Rockbuster. Taiwan and Phillipines have the highest purchasing power within the region.</p>
+									
+									<hr class="major" />
+									
+									<h3>Step 3 - Inventory Understanding</h3>
+									<p>With an understanding of the market and customers, next is to analyze the movie inventory for Rockbuster and see how it can all tie back to the online launch strategy. First, a look at most profitable movies showed that within the top 25 films, Comedy was the genre with 20% of the titles.</p>
+									
+									<div class="col-2">
+										<p>Here we compare the inventory genre count with their respective revenue generated.</p>
+										<span class="image fit" style="max-width: 1280px;"><img src="project images/rb_inventory.png"/></span>
+										<p>Sports is the top film category according to revenue and number of films. Sci-Fi is the second most proftiable genre, yet has fewer films in inventory. Comedy, a category with 5 movies in the top 25 most profitable, has the 6th smallest inventory.</p>
+									</div>
+									
+									<hr class="major" />
+									
+									<h2>Recommendations</h2>
+									<p>
+									<ol>
+										<li>Recommend targeted marketing in Philippines and Taiwan to take advantage of their large Purchasing Power. Target customer base increase of 50% for both.</li>
+											<ul>
+												<li>Philippines, from 20 customers to 30</li>
+												<li>Taiwan, from 10 customers to 15</li>
+												<li>Increase marketing of Animation films, since the genre is the most popular category in both countries.</li>
+											</ul>
+										<li>Increase marketing of Sports films in all regions to maximize number of customers on online platform.</li>
+										<li>Expand library of genres to maximize revenue.</li>
+											<ul>
+												<li>Increase of Sci-Fi by 15%  - from 59 to 68</li>
+												<li>Increase inventory of Comedy by 15% - from 56 to 67</li>
+											</ul>
+										<li>Cancel licenses of genres to decrease costs</li>
+											<ul>
+												<li>Decrease inventory of Foreign by 10% - from 67 to 61</li>
+												<li>Decrease inventory of Family by 10% - from 66 to 60</li>
+												<li>Cancel license for the 1 Thriller film in inventory. Not profitable to retain this license.</li>
+											</ul>
+									</ol>
+									</p>
+																		
+									<hr class="major" />
+
+								</section>
+
+					</div>
+			</div>
+	</body>
+</html>

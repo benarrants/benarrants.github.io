@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Marketing Strategy Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style/style_proto.css" />
+        <script type="text/javascript" src="style/js_style.js"></script>
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo" style="padding-top: .4em;"><strong>Benjamin Arrants</strong></a>
+									<nav id="menu" style="text-align:center;">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="aboutme.html">About Me</a></li>
+                                            <li>
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="drop">Projects &#9660</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <a href="gameco.html">Budget Reallocation</a>
+                                                        <a href="influenza.html">Resource Reallocation</a>
+                                                        <a href="rockbuster.html">Online launch Strategy</a>
+                                                        <a href="instacart.html">Marketing Strategy</a>
+                                                        <a href="imdb.html">Profit Optimization</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+										</ul>
+									</nav>
+								</header>
+
+							<!-- Content -->
+								<section style="padding-top: 2.5em;">
+									<header class="main">
+										<h1>Instacart Customer Profiles</h1>
+									</header>
+
+									<h2>Context</h2>
+									<p>Instacart is an online grocery store that operates through an app. Stakeholders want to target different customers with applicable marketing campaigns to see whether they influence the sale of their products.</p>
+									
+									<h2>Objective</h2>
+									<p>Perform an initial data and exploratory analysis to derive insights and suggest strategies for better segmentation based on the provided criteria.</p>
+									
+									<h2>Deliverable(s)</h2>
+									<p>A final report in Excel containing data, analysis, and insights. Includes tables and visualizations to effectively communicate recommendations on a marketing strategy based on customer purchasing habits.</p>
+									
+									<h2>Tools Used</h2>
+									<p>Microsoft Excel for reporting, with Jupyter Python and relevant libraries (pandas, NumPy, matplotlib, and seaborn) for analysis and visualizations.</p>
+									
+									<h2>The Data</h2>
+									<p>“The Instacart Online Grocery Shopping Dataset 2017”, Accessed from www.instacart.com/datasets/grocery-shopping-2017 via <a href="https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis">Kaggle</a> on 10/10/2023.</p>
+									<p>Used these datasets: customers, orders, products, departments, and orders_products_prior. Collectively, over 30 million entries.</p>
+									
+									<ul class="actions" style="margin-bottom: 0;">
+										<li><a href="https://github.com/benarrants/Instacart-analysis" class="button primary">Complete Project on Github</a></li>
+									</ul>
+									
+									<hr class="major" />
+									
+									<h2>First step - Cleaning Data</h2>
+									<p>The data was checked for cleanliness and consistency (missing values, duplicates, and format changes). Cleaned and checked consistency of the customers, orders, and orders_products_prior data sets. The departments data set was reformatted into a data dictionary data frame to assist in analysis.</p>					
+									
+									<h2>Second step - Merging Data</h2>
+									<p>Data was merged into a single dataset with over 30 million entries and over 30 columns, using primary keys of order_id or user_id depending on the dataset.</p>
+									<p>Below is a flow of how the entry amounts changed with cleaning, consistency, and merging.</p>
+									<span class="image fit" style="max-width: 3000px;"><img src="project images/insta_workflow.png"/></span>
+									
+									<hr class="major" />
+									
+									<h2>Third Step - Segmenting Customers</h2>
+									<p>To get to the heart of what the Analysis is about, the customer profiles, we need to segment the customers into groups. Using the loc() function, it is very simple to slice into data frames and segment groups.</p>
+										<h4>Example of code to assist in creating a customer profile, specifically a loyalty flag on a customer based on max_order number.</h4>
+											
+											# Applying loyalty flag to max_order column using loc function <br />
+											ords_prods_merge.loc[ords_prods_merge['max_order'] > 40, 'loyalty_flag'] = 'Loyal customer' <br />
+											ords_prods_merge.loc[(ords_prods_merge['max_order'] <= 40) & (ords_prods_merge['max_order'] > 10), 'loyalty_flag'] = 'Regular customer'<br />
+											ords_prods_merge.loc[ords_prods_merge['max_order'] <= 10, 'loyalty_flag'] = 'New customer'<br />
+											
+									<hr class="major" />
+									
+									<h2>Fourth step - Insights and Visualizing</h2>
+                                    <p>The busiest time of day is midday, from 9 am to 5 pm. 84% of all orders happen within this timeframe. Every hour in this timeframe has more than 1.5 million orders.</p>
+										<img class="image fit" style="max-width:500px" src="project images/insta_orders_hod.png"/>
+                                    <p>The most popular products ordered by customers are' produce' and 'dairy eggs' products. These two departments make up 52%, over half of all orders.</p>
+										<img class="image fit" style="max-width:460px" src="project images/insta_department.png"/>
+                                    <p>Regular and New Customers make up 90% of the customer base.</p>
+										<img class="image fit" style="max-width:390px" src="project images/insta_order_loyalty_pie.png"/>
+                                    <p>Loyal Customers only make up 10% of all customers, yet they are 33% of all orders. Regular Customers order at 51% but are 47% of the customer base. New Customers are 42% of the customer base but are only 16% of all orders.</p>
+										<img class="image fit" style="max-width:390px" src="project images/insta_cust_loyalty_pie.png"/>
+                                    <p>Majority of customers are “Mature Family”, meaning they are over 30 years old, married, and have dependants. 86% of all customers are Mature Family or Childless single. Analysis showed that ordering habits did not change between these customer profiles.</p>
+										<img class="image fit" style="max-width:500px" src="project images/insta_cust_profile_pie.png"/>
+									
+									<hr class="major" />
+									
+									<h2>Recommendations</h2>
+										<ul>
+											<li>Run ads early in the morning, 6 - 8 am, and later afternoon, 6 - 8 pm. These are times are not as popular to purchase, but still have enough traffic to promote good growth and have potential for revenue gain.</li>
+											<li>Run ads to promote 'Snacks' and 'Beverages' by at least 5%. These two departments have a lot of potential for higher ordering frequency.</li>
+											<li>Target ads on Regular Customers. Being the largest customer population, and who order most, they have the most profit potential. Shifting them into Loyal Customers if they order enough is the goal at 10% increase.</li>
+											<li>Run ads or promotions for New Customers, with a goal to increase their purchasing. If they can be shifted into Regular Customers, the goal is to increase Regular Customer by 5%.</li>
+											<li>Run ads to increase number of Mature Family customers by 10%. With that base increasing, it can only mean more profit.</li>
+											<li>Run ads to increase number of Childless Single customers by 5% for the same reasoning as to do it for Mature Family customers.</li>
+										</ul>
+										
+									<hr class="major" />
+
+								</section>
+
+					</div>
+			</div>
+	</body>
+</html>

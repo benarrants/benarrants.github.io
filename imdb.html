@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Profit Optimization Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style/style_proto.css" />
+        <script type="text/javascript" src="style/js_style.js"></script>
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo" style="padding-top: .4em;"><strong>Benjamin Arrants</strong></a>
+									<nav id="menu" style="text-align:center;">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="aboutme.html">About Me</a></li>
+                                            <li>
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="drop">Projects &#9660</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <a href="gameco.html">Budget Reallocation</a>
+                                                        <a href="influenza.html">Resource Reallocation</a>
+                                                        <a href="rockbuster.html">Online launch Strategy</a>
+                                                        <a href="instacart.html">Marketing Strategy</a>
+                                                        <a href="imdb.html">Profit Optimization</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+										</ul>
+									</nav>
+								</header>
+
+							<!-- Content -->
+								<section style="padding-top: 2.5em;">
+									<header class="main">
+										<h1>IMDb Movie Database</h1>
+									</header>
+
+									<h2>Context</h2>
+									<p>IMDb is an online database for information on many types of media consumption, but for this project the focus was on movies.</p>
+									
+									<h2>Objective</h2>
+									<p>Analysis was exploratory to discover and test potential hypotheses</p>
+									
+									<h2>Deliverable(s)</h2>
+									<p>A Tableau Storyboard detailing insights and potential next steps for the project.</p>
+									
+									<h2>Tools Used</h2>
+									<p>Kaggle to retrieve dataset, Microsoft Excel for data cleaning, Jupyter Python for analysis, and Tableau for visual presentation.</p>
+												
+									<h2>The Data</h2>
+									<p>At the time of the project, it contained 7668 movies from 1980 to 2020, scraped from IMDb, consists of information like mpaa rating, genre, runtime, IMDb scores and votes, cast and crew, as well as budget and gross revenue.
+									<a href="https://www.kaggle.com/datasets/danielgrijalvas/movies">Dataset on Kaggle</a></p>
+									<p>GeoSpatial Dataset used as well for map analysis.
+									<a href="https://www.kaggle.com/datasets/ktochylin/world-countries">Available on Kaggle</a></p>
+									
+									<ul class="actions" style="margin-bottom: 0;">
+										<li><a href="https://github.com/benarrants/IMDb-movies-analysis" class="button primary">Complete Project on Github</a></li>
+									</ul>
+									
+									<hr class="major" />
+									
+									<h2>First Step - Cleaning</h2>
+									<p>This task was more involved than initially anticipated, but this dataset was specifically chosen because it was the best fit for the project scope, and it was definitely the cleanest dataset found while searching.</p>
+									<p>Cleaning included making changes to nearly every column. Missing values were double checked with IMDb directly to see if the information was available on the site but for some reason didn't translate to the dataset. Formatting needed to be changed, and in some cases, entire entries did not match IMDb and had to be reimputted or even deleted in one case because it wasn't on IMDb at all in any form.</p>
+																		
+									<h2>Second Step - Descriptive Statistics and Exploratory Questions</h2>
+									<p>While calculating descriptive statistics for the variables, the idea was to come up with questions that would steer the direction of analysis. Not all the questions were answered in the end, but they were helpful in the decision toward a certain hypothesis.</p>
+									<p>Some of the questions include:
+										<ul>
+											<li>What are the most profitable movies?</li>
+											<li>What are the least profitable movies?</li>
+											<li>What is the relationship between budget and revenue?</li>
+											<li>Is there a positive relationship between score and votes?</li>
+											<li>Is there a positive relationship between score and revenue?</li>
+											<li>How has movie revenue or budget changed over time?</li>
+											<li>How does revenue breakdown regarding country?</li>								
+										</ul>
+									</p>
+									
+									<hr class="major" />
+
+									<h2>Third Step - Correlations</h2>
+									<p>Correlations were checked on numerical variables as this would highlight variables with relationships that could be potentially interesting to explore. Below, is the heatmap showing the correlations.</p>
+									<span class="image fit"><img style="max-width:800px" src="project images/imdb_corr_heat.png"/></span>
+									<p>Here, it is evident that gross revenue and budget have a compelling correlation. As does gross revenue and IMDb vote count.</p>
+									<p>At this point, a solid Hypothesis presented itself via the correlation test and the exploratory questions: Revenue can be optimized for a film. Because of the correlation test specifically, a more precise hypthesis was tested; The higher the budget the higher the revenue.</p>
+										
+									<hr class="major" />
+										
+									<h2>Fourth Step - Regression Test</h2>
+									<p>With the budget vs gross correlation to test, it was run through a regression model.</p>
+									<span class="image fit"><img style="max-width:660px"  src="project images/imdb_reg_test_bud_gross.png"/></span>
+									<p>The line appears to fit the data well, though there are a lot of outliers far away from the regression line that would suggest it doesn't fit as well as it appears. Another approach was needed.</p>
+									
+									<hr class="major" />
+									
+									<h2>Fifth Step - Clustering</h2>
+									<p>"Clustering" is grouping data in a way which we can compare and find meaningful patterns within the points. After assigning clusters to all the numerical data within the dataset, the visual below is possible.</p>
+									<span class="image fit" style="max-width: 1200px;"><img src="project images/imdb_cluster_bud_gross_mark.png"/></span>
+									<p>Difficult to intepret because of the bulk of the points in clusters 1 and 2, but cluster 0 can easily highlight the hypothesis we are testing. A large bulk of movies have budgets of 100 million and rarely exceed gross revenue of 500 million. Cluster 0 is essentially the cluster of outliers, and as can be seen; many films have a higher budget, but they don't necessarily have a higher revenue. The points indicated on the chart are particularly interesting to counter the hypothesis.</p>
+									
+									<hr class="major" />
+									
+									<h2>Sixth Step and Beyond - More Variables</h2>
+									<p>Because budget can't guarantee revenue for a film, other variables were explored visually to determine if they can influence the outcome.</p>
+									
+									<h4>Some of the visualizations generated during the project</h4>
+										<div class="box">
+											<div class="row">
+												<div class="col-3"><span class="image fit"><img src="project images/imdb_cluster_bar.png"/></span></div>
+												<div class="col-3"><span class="image fit"><img src="project images/imdb_writ_star_dir_gross_country.png"/></span></div>
+												<div class="col-3"><span class="image fit"><img src="project images/imdb_genre_bud_gross.png"/></span></div>
+											</div>
+										</div>
+									
+									<hr class="major" />
+																		
+									<h2>Conclusion and Next Steps</h2>
+									<p>Can revenue be optimized for a film? Maybe.</p>
+									<p>In the end, based on this analysis, a film cannot have a guarantee for high revenue, or even a profit, but the odds can be tipped into favor so to speak. Budget isn't as reliable. If a film is in the Action genre, it will likely be popular. If it's starring Tom Cruise or directed by Steven Spielberg, even better. A combination of all these factors can make a movie profitable, but there can also be factors and variables that weren't part of this analysis that could influence things.</p>
+										<ul>
+											<li>Ticket price</li> 
+											<li>Streaming platform (if applicable)</li> 
+											<li>Premiere date</li>
+										</ul>
+									<p>These would require an additional dataset to merge with. All these and more could further narrow down what makes a movie profitable and perhaps prove or disprove the hypothesis once and for all: Revenue can be optimized for a film.</p>
+																				
+									<hr class="major" />
+
+								</section>
+
+					</div>
+			</div>
+	</body>
+</html>

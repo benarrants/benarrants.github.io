@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Budget Reallocation Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="style/style_proto.css" />
+        <script type="text/javascript" src="style/js_style.js"></script>
+
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo" style="padding-top: .4em;"><strong>Benjamin Arrants</strong></a>
+									<nav id="menu" style="text-align:center;">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="aboutme.html">About Me</a></li>
+                                            <li>
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="drop">Projects &#9660</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <a href="gameco.html">Budget Reallocation</a>
+                                                        <a href="influenza.html">Resource Reallocation</a>
+                                                        <a href="rockbuster.html">Online launch Strategy</a>
+                                                        <a href="instacart.html">Marketing Strategy</a>
+                                                        <a href="imdb.html">Profit Optimization</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+										</ul>
+									</nav>
+								</header>
+
+							<!-- Content -->
+								<section style="padding-top: 2.5em;">
+									<header class="main">
+										<h1>GameCo Video Game Marketing</h1>
+									</header>
+									
+									<h2>Context</h2>
+									<p>GameCo, a video game company, is under the assumption that Sales for the various geographic regions have stayed the same over time. Analysis will determine if this is true or not, and whether the marketing budget needs to be redistributed among the regions in order to maximize return on investment in 2017.</p>
+									
+									<h2>Objective</h2>
+									<p>Perform a descriptive analysis of the sales data to give a recommendation of how the budget should be reallocated.</p>
+									
+									<h2>Deliverable(s)</h2>
+									<p>Create a presentation with compelling visuals telling the analytical story.</p>
+									
+									<h2>Tools Used</h2>
+									<p>Microsoft Excel and Powerpoint.</p>
+									
+									<h2>The Data</h2>
+									<p>Historical sales of video games until 2017 (for games that sold more than 100,000 copies) spanning different platforms, genres, and publishing studios. The Source and Data:
+									<a href="https://www.vgchartz.com/">VGChartz</a>, <a href="https://images.careerfoundry.com/public/courses/intro-to-data/E1/vgsales.xlsx">Data</a></p>
+									
+									<hr class="major" />
+									
+									<h2>First Step - Data Exploration and Cleaning </h2>
+									<p>Understanding the data through aggregations using pivot tables, finding data bias that influences the analysis, and performing quality checks (inconsistent formatting, duplicates, missing values).</p>
+
+									<h2>Second Step - Data Analytics</h2>
+									<p>Create histograms, bar charts, box whisker plots, and scatter plots to compare data and discard outliers that affect descriptive statistics.</p>
+
+									<h2>Third Step - Insights and Data Visualization</h2>
+									<p>As opposed to what the GameCo was expecting, sales across the main regions (North America, Europe, and Japan) have not remained the same. Looking at proportional sales, the EU surpassed NA sales in 2016.<br /><br />
+									<span class="image fit"><img src="project images/gameco_percent_sales.png"/></span>
+								
+									<h2>Recommendations</h2>
+										<ul>
+											<li>To maximize Return on Investment, GameCo should redistribute its marketing budget for 2017, so the European region has the highest percentage of that budget.</li>
+											<li>The North American region should then have the second largest percentage of the budget while the Japanese region should have the third largest.</li>
+										</ul>
+										
+									<hr class="major" />
+								
+								</section>
+
+					</div>
+			</div>
+	</body>
+</html>
